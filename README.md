@@ -317,7 +317,15 @@ Adaptive Cards, meetings, and calls are **explicitly out of scope** — use the 
 
 ---
 
-## Running the sample
+## Samples
+
+| Sample | Demonstrates | Auth |
+|---|---|---|
+| [`samples.ConsoleQuery`](samples/samples.ConsoleQuery) | List teams, channels, last 10 messages in a channel | App-only |
+| [`samples.PostMessage`](samples/samples.PostMessage) | Post plain & HTML messages, replies, mentions, and to a 1:1 chat | Delegated (device code) |
+| [`samples.ChatBot`](samples/samples.ChatBot) | End-to-end: subscribe → receive webhook → fetch message → reply (with auto-renewal + teardown) | App-only |
+
+### Running `samples.ConsoleQuery`
 
 ```powershell
 $env:TEAMS_TENANT_ID    = "<your-tenant-id>"
@@ -327,6 +335,40 @@ $env:TEAMS_TEAM_ID      = "<a-team-id>"      # optional
 $env:TEAMS_CHANNEL_ID   = "<a-channel-id>"   # optional, requires ChannelMessage.Read.All
 dotnet run --project samples/samples.ConsoleQuery
 ```
+
+### Running `samples.PostMessage` (delegated — device code)
+
+```powershell
+$env:TEAMS_TENANT_ID       = "<your-tenant-id>"
+$env:TEAMS_CLIENT_ID       = "<your-app-client-id>"
+$env:TEAMS_TEAM_ID         = "<a-team-id>"
+$env:TEAMS_CHANNEL_ID      = "<a-channel-id>"
+$env:TEAMS_MY_USER_ID      = "<your-aad-user-id>"     # optional — enables @mention demo
+$env:TEAMS_OTHER_USER_ID   = "<another-user-id>"      # optional — enables 1:1 chat demo
+dotnet run --project samples/samples.PostMessage
+# Follow the device-code prompt printed in the console.
+```
+
+### Running `samples.ChatBot`
+
+Needs a public HTTPS URL (use [ngrok](https://ngrok.com/) or Cloudflare Tunnel in dev):
+
+```powershell
+# Terminal 1
+ngrok http 5000
+
+# Terminal 2
+$env:TEAMS_TENANT_ID         = "<your-tenant-id>"
+$env:TEAMS_CLIENT_ID         = "<your-app-client-id>"
+$env:TEAMS_CLIENT_SECRET     = "<your-app-client-secret>"
+$env:TEAMS_TEAM_ID           = "<a-team-id>"
+$env:TEAMS_CHANNEL_ID        = "<a-channel-id>"
+$env:TEAMS_BOT_PUBLIC_URL    = "https://<your>.ngrok.io"
+$env:TEAMS_BOT_CLIENT_STATE  = "any-random-secret"
+dotnet run --project samples/samples.ChatBot --urls http://localhost:5000
+```
+
+Then post a message in the target channel — within ~10 seconds the bot will reply.
 
 ---
 

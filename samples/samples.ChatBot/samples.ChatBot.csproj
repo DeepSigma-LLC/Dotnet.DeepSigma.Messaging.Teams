@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>DeepSigma.Messaging.Teams.Samples.ChatBot</RootNamespace>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CA1848;CA1873;CA2007</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DeepSigma.Messaging.Teams\DeepSigma.Messaging.Teams.csproj" />
+    <ProjectReference Include="..\..\src\DeepSigma.Messaging.Teams.AspNetCore\DeepSigma.Messaging.Teams.AspNetCore.csproj" />
+  </ItemGroup>
+
+</Project>
