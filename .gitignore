@@ -1,0 +1,31 @@
+## .NET build artifacts
+bin/
+obj/
+out/
+artifacts/
+*.user
+*.suo
+*.userprefs
+*.binlog
+
+## IDE
+.vs/
+.vscode/
+.idea/
+
+## Test
+TestResults/
+coverage*.xml
+coverage*.json
+*.coverage
+
+## NuGet
+*.nupkg
+*.snupkg
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Logs
+*.log

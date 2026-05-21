@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>DeepSigma.Messaging.Teams.AspNetCore</RootNamespace>
+    <AssemblyName>DeepSigma.Messaging.Teams.AspNetCore</AssemblyName>
+    <IsPackable>true</IsPackable>
+    <PackageId>DeepSigma.Messaging.Teams.AspNetCore</PackageId>
+    <Description>ASP.NET Core helpers for DeepSigma.Messaging.Teams — minimal-API endpoint for receiving Microsoft Graph change notifications from Teams.</Description>
+    <PackageTags>microsoft-teams;teams;graph;webhook;aspnetcore;deepsigma</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DeepSigma.Messaging.Teams\DeepSigma.Messaging.Teams.csproj" />
+  </ItemGroup>
+
+</Project>
